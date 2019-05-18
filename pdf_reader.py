@@ -41,9 +41,8 @@ def convert_pdf_to_txt(path):
 
 
 
-# metadata of files
-file = open('DTSE_Hackathon_C1_Training/Financial reports/FR100.pdf', 'rb')
-parser = PDFParser(file)
-document = PDFDocument(parser)
-number_of_pages = resolve1(document.catalog['Pages'])['Count']
-has plots
+# Count pages of files
+# file = open('DTSE_Hackathon_C1_Training/Financial reports/FR100.pdf', 'rb')
+# parser = PDFParser(file)
+# document = PDFDocument(parser)
+# number_of_pages = resolve1(document.catalog['Pages'])['Count']
