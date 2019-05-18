@@ -16,6 +16,7 @@ def lower_each(words_list):
 
 def remove_punctuation(words_list):
     clean = []
+    string.punctuation += "'\"-`’“–"
     for word in words_list:
         clean_word=word.translate(str.maketrans('', '', string.punctuation))
         if clean_word:
@@ -24,7 +25,9 @@ def remove_punctuation(words_list):
 
 
 def remove_stopwords(words: List = None):
-    stop_words = set(stopwords.words('english'))
+    stop_words = stopwords.words('english')
+    stop_words.extend(['from', 'subject', 're', 'edu', 'use', 'true', 'http'])
+    stop_words = set(stop_words)
     clean = []
     for word in words:
         if word not in stop_words:
