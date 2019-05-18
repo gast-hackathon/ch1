@@ -5,6 +5,7 @@ from os.path import isfile, join
 
 import pdf_reader
 import preprocessing
+import ast
 
 from gensim import corpora, models
 from gensim.models import Phrases
@@ -80,5 +81,22 @@ def extract_top_topics(dataset):
 	for i in range(10):
 		key = top_keys[i]
 		top_topics.append(key)
+
+		print(key, scores[key])
 		
-	return top_topics
+	return lda_model, dictionary, top_topics, topics
+
+def to_list_of_list_of_strings(texts):
+
+	lst = []
+
+	for text in texts.tolist():
+
+		lst2 = []
+
+		for word in ast.literal_eval(text):
+			lst2.append(word)
+		
+		lst.append(lst2)
+
+	return lst
