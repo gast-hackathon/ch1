@@ -15,6 +15,11 @@ from io import StringIO
 
 
 def convert_pdf_to_txt(path):
+    """
+    # read a pdf file and convert it to string
+    :param path: path to pdf file
+    :return:
+    """
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
     codec = 'utf-8'
@@ -37,7 +42,6 @@ def convert_pdf_to_txt(path):
     retstr.close()
     return text
 
-# read all files and save them as text files
 
 
 
@@ -46,3 +50,8 @@ def convert_pdf_to_txt(path):
 # parser = PDFParser(file)
 # document = PDFDocument(parser)
 # number_of_pages = resolve1(document.catalog['Pages'])['Count']
+
+
+
+
+
