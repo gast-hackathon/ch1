@@ -1,6 +1,7 @@
 """Module containing preprocessing function"""
 from typing import List
 import string
+import gensim
 
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
@@ -16,6 +17,7 @@ def lower_each(words_list):
 
 def remove_punctuation(words_list):
     clean = []
+    string.punctuation += '”“-’'
     for word in words_list:
         clean_word=word.translate(str.maketrans('', '', string.punctuation))
         if clean_word:
@@ -37,6 +39,7 @@ def stem_each(words: List = None):
     return [ps.stem(word) for word in words]
 
 
+
 def preprocess_text(text: str = None) -> List:
 
     tokenized = word_tokenize(text)
@@ -46,3 +49,13 @@ def preprocess_text(text: str = None) -> List:
     stemmed = stem_each(no_stop)
 
     return stemmed
+
+
+def add_bigrams(words: List = None):
+    bigram = gensim.models.Phrases(words)  # provide all the texts as lists
+
+    return bigram[[]]
+
+    bigramis = gensim.models.Phrases(
+        ['hog', 'son', 'ropi', 'hog', 'son', 'out', 'ropi', 'hog', 'son'])
+    bigramis[['hog', 'son', 'ropi', 'out']]
