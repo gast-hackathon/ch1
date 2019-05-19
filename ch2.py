@@ -28,7 +28,7 @@ importlib.reload(utils)
 
 start = time.time()
 
-dataset = utils.read_files_in_dir("C:/Users/Haath/Desktop/DTSE_Hackathon_C2")
+dataset = utils.read_files_in_dir("DTSE_Hackathon_C2")
 
 dataset = utils.apply_bigrams(dataset)
 
