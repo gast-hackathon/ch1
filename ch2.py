@@ -3,6 +3,7 @@
 import importlib
 import nltk
 import time
+import pickle
 
 from gensim import corpora, models
 from gensim.models import Phrases
@@ -29,6 +30,8 @@ start = time.time()
 
 dataset = utils.read_files_in_dir("C:/Users/Haath/Desktop/DTSE_Hackathon_C2")
 
+dataset = utils.apply_bigrams(dataset)
+
 print('load dataset', round(time.time() - start), 'sec')
 print('samples', len(dataset))
 
@@ -38,27 +41,24 @@ print('samples', len(dataset))
 model, dictionary, topics, all_topics = utils.extract_top_topics(dataset)
 
 print(topics)
+print(len(topics))
 
 
 #%% Cross-reference topics
-
-import pickle
-importlib.reload(utils)
 
 threshold = 0.3
 
 print("| Topic | Filename | Category | Relevance |")
 print("| ----- | -------- | -------- | --------- |")
 
-texts = [["enlo", "mate"], ["how", "are", "you", "5g"], "I would very much like a wearable".split()]
-categories = ["Greetings", "Smt about 5g", "Useless"]
-files = ["file1", "file2", "file3"]
-
 f = open("chal1.pickle", "rb")
 (texts, categories, files) = pickle.load(f)
 f.close()
 
 texts = utils.to_list_of_list_of_strings(texts)
+texts = utils.apply_bigrams(texts)
+
+start = time.time()
 
 for i in range(len(texts)):
 	text = texts[i]
@@ -70,3 +70,5 @@ for i in range(len(texts)):
 
 		if topic_name in topics and prob > threshold:
 			print("| %s | %s | %s | %s %% |" % (all_topics[id], files[i], categories[i], round(topic[1] * 100)))
+
+print("results", round(time.time() - start, 1), "sec")

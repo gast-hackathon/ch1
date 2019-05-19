@@ -28,7 +28,7 @@ def read_files_in_dir(dirpath):
 def apply_bigrams(texts):
 	bigram = Phrases(texts)
 
-	return bigram(texts)
+	return bigram[texts]
 
 def extract_top_topics(dataset):
 	frequency = defaultdict(int)
@@ -56,7 +56,7 @@ def extract_top_topics(dataset):
 								eta='auto', #[0.01]*len(dictionary.keys())
 								random_state=1
 							)
-
+	lda_model.save("lda.h5")
 	for i,topic in lda_model.show_topics(formatted=False, num_topics=num_topics, num_words=1):
 		topics.append(topic[0][0])
 		scores[topic[0][0]] = 0
